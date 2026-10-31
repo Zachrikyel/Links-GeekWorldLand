@@ -1,0 +1,673 @@
+/* ========== GLOBAL ========== */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap');
+
+/* ========== VARIABLES (estética GeekWorldland) ========== */
+:root {
+    --primary-purple: #a855f7;
+    --primary-cyan: #06b6d4;
+    --primary-lime: #84cc16;
+    --accent-pink: #ec4899;
+
+    --bg-dark: #000000;
+    --bg-card: #1a1a2e;
+
+    --text-main: #FFFFFF;
+    --text-muted: #94a3b8;
+
+    --font-main: 'Rajdhani', sans-serif;
+    --font-display: 'Orbitron', sans-serif;
+}
+
+/* ========== RESET ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: #050508;
+    color: var(--text-main);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Vista únicamente móvil: en pantallas grandes se muestra una columna de celular centrada */
+.phone-view {
+    width: 100%;
+    max-width: 480px;
+    min-height: 100vh;
+    margin: 0 auto;
+    background: var(--bg-dark);
+    position: relative;
+    overflow-x: hidden;
+    box-shadow: 0 0 60px rgba(168, 85, 247, 0.25);
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-purple);
+    border-radius: 3px;
+}
+
+/* ========== HERO (solo imagen + nombre) ========== */
+#hero-dynamic-container {
+    position: relative;
+    z-index: 1;
+    min-height: 420px;
+    background-color: var(--bg-dark);
+}
+
+.carousel {
+    position: relative;
+    height: 420px;
+    overflow: hidden;
+    background-color: var(--bg-dark);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+.carousel .list {
+    position: absolute;
+    inset: 0;
+}
+
+.carousel .list .item {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s ease-in-out;
+}
+
+.carousel .list .item.active {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 2;
+}
+
+.carousel .list .item img {
+    position: absolute;
+    top: 46%;
+    left: 50%;
+    width: 85%;
+    max-height: 70%;
+    object-fit: contain;
+    transform: translate(-50%, -50%);
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.8));
+    animation: floatImg 4s ease-in-out infinite;
+}
+
+@keyframes floatImg {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%);
+    }
+
+    50% {
+        transform: translate(-50%, -54%);
+    }
+}
+
+/* Solo el nombre del artículo, sin cuadro de leyenda */
+.carousel .list .item .topic {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 40px;
+    padding: 0 30px;
+    text-align: center;
+    font-family: var(--font-main);
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.text-gradient-cyber {
+    background: linear-gradient(90deg, var(--primary-lime) 0%, var(--primary-cyan) 50%, var(--primary-purple) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.2));
+    display: inline-block;
+}
+
+.carousel.next .item.active .topic,
+.carousel .list .item.active .topic {
+    animation: showContent 0.6s ease-out both;
+}
+
+@keyframes showContent {
+    from {
+        transform: translateY(30px);
+        filter: blur(10px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+
+.carousel-bg-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 45%, rgba(168, 85, 247, 0.18), transparent 65%);
+    pointer-events: none;
+}
+
+/* ========== DIVIDER NEON ========== */
+.neon-divider {
+    height: 1px;
+    width: 100%;
+    margin: 0.5rem auto;
+    background: linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.5) 15%, var(--primary-purple) 50%, rgba(6, 182, 212, 0.5) 85%, transparent 100%);
+    box-shadow: 0 0 10px rgba(6, 182, 212, 0.3);
+    animation: lowPulse 4s infinite ease-in-out;
+}
+
+@keyframes lowPulse {
+
+    0%,
+    100% {
+        opacity: 0.5;
+        transform: scaleX(0.95);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scaleX(1);
+        box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
+    }
+}
+
+/* ========== UFO (5 enlaces: 3 arriba, 2 abajo) ========== */
+#ufo-placeholder {
+    display: flex;
+    justify-content: center;
+    padding: 30px 0 10px;
+}
+
+.ufo-container {
+    position: relative;
+    width: 320px;
+    height: 320px;
+}
+
+.ufo-menu {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+
+.ufo-toggle {
+    position: absolute;
+    width: 96px;
+    height: 96px;
+    background: #222237;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 100;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--primary-cyan);
+}
+
+.ufo-toggle img {
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+    filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.5));
+}
+
+.ufo-toggle::before,
+.ufo-toggle::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    border: 2px solid var(--primary-cyan);
+    opacity: 0;
+    pointer-events: none;
+    animation: ufoWave 2.8s ease-out infinite;
+}
+
+.ufo-toggle::after {
+    border-color: var(--primary-purple);
+    animation-delay: 1.4s;
+}
+
+.ufo-menu:not(.active) .ufo-toggle {
+    animation: ufoPulse 1.8s ease-in-out infinite;
+}
+
+.ufo-menu.active .ufo-toggle::before,
+.ufo-menu.active .ufo-toggle::after {
+    animation: none;
+}
+
+@keyframes ufoPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+    }
+
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 35px rgba(6, 182, 212, 0.8);
+    }
+}
+
+@keyframes ufoWave {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: scale(2.4);
+        opacity: 0;
+    }
+}
+
+.ufo-menu.active .ufo-toggle {
+    transform: rotate(360deg) scale(1.1);
+    background: var(--bg-card);
+    box-shadow: 0 0 30px var(--primary-lime);
+    border-color: var(--primary-lime);
+}
+
+/* Items: nacen en el centro y salen a su posición */
+.ufo-link {
+    --x: 0px;
+    --y: 0px;
+    position: absolute;
+    left: calc(50% - 30px);
+    top: calc(50% - 30px);
+    width: 60px;
+    height: 60px;
+    transform: translate(0, 0) scale(0.3);
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.ufo-menu.active .ufo-link {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(var(--x), var(--y)) scale(1);
+}
+
+/* Posiciones: 3 arriba y 2 abajo */
+.ufo-link.top-left {
+    --x: -108px;
+    --y: -70px;
+}
+
+.ufo-link.top-center {
+    --x: 0px;
+    --y: -122px;
+}
+
+.ufo-link.top-right {
+    --x: 108px;
+    --y: -70px;
+}
+
+.ufo-link.bottom-left {
+    --x: -84px;
+    --y: 92px;
+}
+
+.ufo-link.bottom-right {
+    --x: 84px;
+    --y: 92px;
+}
+
+/* Rombo */
+.ufo-link::before {
+    content: "";
+    position: absolute;
+    inset: 20px;
+    box-shadow: 0 0 0 2px var(--clr), 0 0 0 4px var(--bg-dark), 0 0 0 6px var(--clr);
+    transition: 0.5s;
+    z-index: 1;
+    border-radius: 10px;
+    opacity: 0;
+}
+
+.ufo-link:hover::before,
+.ufo-link:active::before {
+    inset: 0;
+    opacity: 1;
+}
+
+.ufo-link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--bg-dark);
+    transform: rotate(45deg);
+    z-index: 1;
+    border-radius: 10px;
+    border: 1px solid var(--clr);
+    box-shadow: 0 0 10px var(--clr);
+    transition: 0.3s;
+}
+
+.ufo-link:hover::after,
+.ufo-link:active::after {
+    background: var(--clr);
+    border: none;
+    box-shadow: 0 0 15px var(--clr);
+    transform: rotate(45deg) scale(1.1);
+}
+
+.ufo-link a {
+    position: relative;
+    z-index: 10;
+    color: var(--clr);
+    font-size: 1.8em;
+    transition: 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}
+
+.ufo-link:hover a,
+.ufo-link:active a {
+    color: #fff;
+}
+
+/* Etiqueta siempre visible (en celular no hay hover) */
+.ufo-label {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 12px;
+    color: var(--clr);
+    font-family: var(--font-display);
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    z-index: 20;
+    pointer-events: none;
+}
+
+/* ========== FOOTER (igual al de GeekWorldland) ========== */
+.container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer {
+    position: relative;
+    margin-top: 300px;
+    padding: 3rem 0;
+    color: var(--text-main);
+    background: #000;
+    font-family: 'Rajdhani', sans-serif;
+    overflow: visible;
+    z-index: 5;
+}
+
+.footer__columns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+}
+
+.footer__col {
+    width: 100%;
+}
+
+.footer__col.center-col {
+    order: -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-logo {
+    display: block;
+    width: 100%;
+    max-width: 180px;
+    height: auto;
+    margin: 0 auto 20px auto;
+    filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.5));
+}
+
+.footer__col-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--primary-cyan);
+}
+
+.footer__col-title span {
+    margin-left: 10px;
+}
+
+.footer__nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    list-style: none;
+}
+
+.footer__nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.footer__nav-link i {
+    margin-right: 10px;
+    color: var(--primary-lime);
+    font-size: 1.2rem;
+}
+
+.footer__nav-link:hover {
+    color: #fff;
+}
+
+.footer__copyrights {
+    padding-top: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--primary-lime);
+}
+
+.zylox-signature {
+    color: var(--primary-cyan);
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-left: 5px;
+    text-shadow: 0 0 8px var(--primary-cyan);
+}
+
+/* --- ANIMACIÓN PARALLAX (OVNI + VACA) --- */
+.footer__parralax {
+    position: absolute;
+    left: 0;
+    top: -300px;
+    height: 300px;
+    width: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.footer__parralax-trees,
+.footer__parralax-premierplan,
+.footer__parralax-secondplan {
+    position: absolute;
+    inset: 0;
+    background-repeat: repeat-x;
+    background-position-y: 100% !important;
+    animation: parralax 60s linear infinite;
+}
+
+.footer__parralax-trees {
+    background-image: url(https://i.ibb.co/nQM4PGJ/arbres.png);
+    bottom: -60px;
+    animation-duration: 100s;
+    filter: hue-rotate(240deg) brightness(0.6);
+}
+
+.footer__parralax-secondplan {
+    background-image: url(https://i.ibb.co/J3TjC4W/second-plan.png);
+    animation-duration: 60s;
+    filter: hue-rotate(280deg);
+}
+
+.footer__parralax-premierplan {
+    background-image: url(https://i.ibb.co/RQhDWbk/premierplanv3.png);
+    animation-duration: 30s;
+}
+
+.footer__parralax-moto {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    margin-left: -100px;
+    height: 200px;
+    width: 150px;
+    background: url('https://www.geekworldland.com/api/drive-proxy?id=1M3Yq5ps9ZFEd3GfJqmY4sqfYMzUZvCqA') no-repeat;
+    transform-origin: 50% 80%;
+    animation: moto 5s linear infinite;
+}
+
+.footer__parralax-voiture {
+    position: absolute;
+    bottom: 0;
+    z-index: 10;
+    left: 50%;
+    margin-left: 50px;
+    height: 114px;
+    width: 206px;
+    background: url('https://www.geekworldland.com/api/drive-proxy?id=1GBA5_GuK42o4hDAmT6mel9C8Nk9dw4eG') no-repeat;
+    animation: voiture 1s linear infinite;
+}
+
+@keyframes parralax {
+    0% {
+        background-position: 260px;
+    }
+
+    100% {
+        background-position: -10000px;
+    }
+}
+
+@keyframes moto {
+    0% {
+        transform: translateY(0) rotate(0);
+    }
+
+    5% {
+        transform: translateY(0) rotate(-5deg);
+    }
+
+    25% {
+        transform: translateY(60px) rotate(-20deg);
+    }
+
+    49% {
+        transform: translateY(0) rotate(-1deg);
+    }
+
+    51% {
+        transform: translateY(0) rotate(1deg);
+    }
+
+    75% {
+        transform: translateY(60px) rotate(20deg);
+    }
+
+    80% {
+        transform: translateY(60px) rotate(0deg);
+    }
+
+    98% {
+        transform: translateY(0) rotate(0);
+    }
+}
+
+@keyframes voiture {
+    0% {
+        transform: rotate(0);
+    }
+
+    25% {
+        transform: rotate(-5deg);
+    }
+
+    50% {
+        transform: rotate(0);
+    }
+
+    75% {
+        transform: rotate(5deg);
+    }
+
+    100% {
+        transform: rotate(0);
+    }
+}
+
+/* Pantallas muy angostas */
+@media (max-width: 340px) {
+    .ufo-container {
+        transform: scale(0.85);
+    }
+}
+
