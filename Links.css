@@ -68,13 +68,13 @@ body {
 #hero-dynamic-container {
     position: relative;
     z-index: 1;
-    min-height: 420px;
+    min-height: 480px;
     background-color: var(--bg-dark);
 }
 
 .carousel {
     position: relative;
-    height: 420px;
+    height: 480px;
     overflow: hidden;
     background-color: var(--bg-dark);
     -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
@@ -104,8 +104,8 @@ body {
     position: absolute;
     top: 46%;
     left: 50%;
-    width: 85%;
-    max-height: 70%;
+    width: 106%;
+    max-height: 88%;
     object-fit: contain;
     transform: translate(-50%, -50%);
     filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.8));
