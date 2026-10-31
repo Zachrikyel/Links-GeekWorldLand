@@ -27,6 +27,13 @@ try {
     console.error('❌ Error inicializando Supabase:', error);
 }
 
+/* Rutas relativas (ej. /api/drive-proxy?id=...) se resuelven contra la página principal */
+const resolveImg = (url) => {
+    const u = String(url || '').trim();
+    if (u.startsWith('//')) return `https:${u}`;
+    return u.startsWith('/') ? `${SITE_URL}${u}` : u;
+};
+
 const escapeHtml = (str) => String(str ?? '').replace(/[&<>"']/g, (c) => (
     { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
 ));
@@ -49,7 +56,7 @@ async function loadDynamicHero() {
 
     const itemsHtml = products.map((p, i) => `
         <div class="item${i === 0 ? ' active' : ''}">
-            <img src="${escapeHtml(p.card_middle_url)}" alt="${escapeHtml(p.name)}">
+            <img src="${escapeHtml(resolveImg(p.card_middle_url))}" alt="${escapeHtml(p.name)}">
             <div class="topic"><span class="text-gradient-cyber">${escapeHtml(p.name)}</span></div>
         </div>`).join('');
 
