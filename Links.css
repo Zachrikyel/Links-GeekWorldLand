@@ -104,8 +104,8 @@ body {
     position: absolute;
     top: 35%;
     left: 50%;
-    width: 115%;
-    max-height: 88%;
+    width: 132.5%;
+    max-height: 110%;
     object-fit: contain;
     transform: translate(-50%, -50%);
     filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.8));
