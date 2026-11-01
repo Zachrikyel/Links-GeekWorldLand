@@ -68,13 +68,13 @@ body {
 #hero-dynamic-container {
     position: relative;
     z-index: 1;
-    min-height: 480px;
+    min-height: 350px;
     background-color: var(--bg-dark);
 }
 
 .carousel {
     position: relative;
-    height: 480px;
+    height: 350px;
     overflow: hidden;
     background-color: var(--bg-dark);
     -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
@@ -102,7 +102,7 @@ body {
 
 .carousel .list .item img {
     position: absolute;
-    top: 46%;
+    top: 35%;
     left: 50%;
     width: 106%;
     max-height: 88%;
@@ -129,7 +129,7 @@ body {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 40px;
+    bottom: 15px;
     padding: 0 30px;
     text-align: center;
     font-family: var(--font-main);
